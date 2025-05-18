@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudyApp.View.PractisePage"
+             Title="{Binding CurrentPackName}">
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <HorizontalStackLayout Spacing="5" Margin="20,0,20,0">
+                <Label Text="{Binding ProgressLabel}" VerticalOptions="Center" />
+                <Label Text="{Binding Progress}" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Flashcard Container -->
+            <Frame CornerRadius="20" Margin="30" Padding="20" HasShadow="True">
+                <VerticalStackLayout>
+
+                    <!-- Question -->
+                    <Label Text="{Binding Question}" FontSize="18" 
+                           HorizontalTextAlignment="Center" Margin="0,5,0,10"/>
+
+                    <Image Source="{Binding Img1Name}" Aspect="AspectFit">
+                        <Image.Triggers>
+                            <!-- If the image is vertical, set a max height -->
+                            <DataTrigger TargetType="Image" Binding="{Binding IsImg1Vertical}" Value="True">
+                                <Setter Property="HeightRequest" Value="250"/>
+                                <!-- Set max height for vertical images -->
+                            </DataTrigger>
+
+                            <!-- If the image is horizontal, allow natural size (no height constraint) -->
+                            <DataTrigger TargetType="Image" Binding="{Binding IsImg1Vertical}" Value="False">
+                                <Setter Property="HeightRequest" Value="-1"/>
+                                <!-- Removes height constraint -->
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+
+
+                    <!-- Separator Line -->
+                    <BoxView BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}"
+                             HeightRequest="1" Margin="0,5,0,5"/>
+
+                    <!-- Translation -->
+                    <Label Text="{Binding Answer}" FontSize="18" TextColor="Gray"
+                           Margin="10,20,0,15"/>
+
+                    <Image Source="{Binding Img2Name}" Aspect="AspectFit">
+                        <Image.Triggers>
+                            <!-- If the image is vertical, set a max height -->
+                            <DataTrigger TargetType="Image" Binding="{Binding IsImg2Vertical}" Value="True">
+                                <Setter Property="HeightRequest" Value="250"/>
+                                <!-- Set max height for vertical images -->
+                            </DataTrigger>
+
+                            <!-- If the image is horizontal, allow natural size (no height constraint) -->
+                            <DataTrigger TargetType="Image" Binding="{Binding IsImg2Vertical}" Value="False">
+                                <Setter Property="HeightRequest" Value="-1"/>
+                                <!-- Removes height constraint -->
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Review Question -->
+            <Label Text="Did you remember the answer?" FontSize="16" 
+                   IsVisible="{Binding Next}"
+                   FontAttributes="Bold" HorizontalTextAlignment="Center"
+                   Margin="0,10,0,10"/>
+
+            <!-- Button Stack Layout -->
+            <VerticalStackLayout Spacing="10" Margin="10,5,10,5">
+                <Button Text="✖ FORGOTTEN" 
+                        Command="{Binding RateCommand}"
+                        IsVisible="{Binding Next}"
+                        CommandParameter="0"
+                        BackgroundColor="#D4AFCD"
+                        CornerRadius="10" FontSize="16"
+                        HeightRequest="50" HorizontalOptions="FillAndExpand"/>
+
+                <Button Text="⚠ REMEMBERED SOMETHING" 
+                        Command="{Binding RateCommand}"
+                        IsVisible="{Binding Next}"
+                        CommandParameter="2"
+                        BackgroundColor="#B79FAD"
+                        CornerRadius="10" FontSize="16"
+                        HeightRequest="50" HorizontalOptions="FillAndExpand"/>
+
+                <Button Text="✔ MOSTLY CORRECT (~80%)" 
+                        Command="{Binding RateCommand}"
+                        IsVisible="{Binding Next}"
+                        CommandParameter="4"
+                        BackgroundColor="#556F7A"
+                        CornerRadius="10" FontSize="16"
+                        HeightRequest="50" HorizontalOptions="FillAndExpand"/>
+
+                <Button Text="✔ PERFECT" 
+                        Command="{Binding RateCommand}"
+                        IsVisible="{Binding Next}"
+                        CommandParameter="5"
+                        BackgroundColor="#2E6171"
+                        CornerRadius="10" FontSize="16"
+                        HeightRequest="50" HorizontalOptions="FillAndExpand"/>
+
+                <Grid ColumnDefinitions="*, *"
+                      Margin="20,50,20,0"
+                      ColumnSpacing="20">
+
+                    <!-- Buttons to navigate between the flashcards -->
+                    <Button Text="{Binding TitleAnswer}"
+                            Command="{Binding ShowQACommand}"
+                            IsVisible="{Binding AnswerBtnVisible}"
+                            Grid.Column="1"
+                            BackgroundColor="#91c9aa"/>
+
+                    <Button Text="EXIT"
+                            Command="{Binding GoBackCommand}"
+                            Grid.Column="0"
+                            BackgroundColor="#91c9aa"/>
+                </Grid>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

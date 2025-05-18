@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudyApp.View.SettingsPage"
+             Title="Settings">
+    <VerticalStackLayout Margin="20,20,20,0" Spacing="10">
+        <Label Text="Please set up API for ChatGPT" FontSize="18" Margin="10,0,10,10"/>
+        <Frame Padding="10,5,10,5">
+            <Grid RowDefinitions="Auto, Auto">
+                <Label Text="{Binding ApiKeyTitle}" VerticalOptions="Center" Grid.Row="0"/>
+                <Editor Text="{Binding ApiKeyCopy}" VerticalOptions="Center" Grid.Row="1" AutoSize="TextChanges"/>
+            </Grid>
+        </Frame>
+        <Frame Padding="10,5,10,5" Margin="0,0,0,20">
+            <Grid RowDefinitions="Auto, Auto">
+                <Label Text="Your native language (for automatic translation): " VerticalOptions="Center" Grid.Row="0"/>
+                <Entry Text="{Binding DefLanguage}" VerticalOptions="Center" Grid.Row="1" />
+            </Grid>
+        </Frame>
+        <Button Text="Save changes" Command="{Binding SaveCommand}"></Button>
+        <Button Text="Exit" Command="{Binding ExitCommand}"></Button>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudyApp.View.MainPage"
+             xmlns:vm="clr-namespace:StudyApp.ViewModel"
+             Title="GenCards">
+
+
+    <Grid RowDefinitions="auto, *, auto">
+
+        <!-- Fixed content at the top -->
+        <Grid Padding="20,5,5,10" ColumnSpacing="10" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Your study sets" FontSize="18"/>
+
+            <!-- Button to open settings -->
+            <Button Text="⚙️"
+                    FontSize="21"
+                    BackgroundColor="Transparent"
+                    Command="{Binding SettingsCommand}"
+                    Grid.Column="1" VerticalOptions="Center"
+                    CornerRadius="100"
+                    Margin="5,0,0,0"/>
+        </Grid>
+
+        <!-- Scrollable content -->
+        <Grid Grid.Row="1" Grid.ColumnSpan="3" Padding="20,10,20,10">
+            <CollectionView x:DataType="{x:Null}"
+                            ItemsSource ="{Binding ListPacks}"
+                            Grid.Row="1" Grid.ColumnSpan="2"
+                            SelectionMode="None">
+
+            <!-- Add spacing between items -->
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+
+            <!-- Study sets preview -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame  CornerRadius="18">
+                        <Grid Padding="5">
+
+                            <!-- Navidate to the selected flashcard with tap command -->
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType=
+                                            {x:Type vm:HomeViewModel}}, Path=TapCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+
+                            <Label Text="{Binding Name}" FontSize="20"
+                                   HorizontalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </Grid>
+
+        <!-- Fixed button at the bottom of the screen -->
+        <Grid Grid.Row="2" Padding="10" ColumnDefinitions="54,*">
+            <!-- Button to add new card pack -->
+            <Button Text="+" FontSize="25"
+                    BackgroundColor="#91c9aa"
+                    Command="{Binding AddCommand}"
+                    BorderColor="Transparent"
+                    Grid.Column="0"
+                    CornerRadius="100"/>
+        </Grid>
+    </Grid>
+    
+</ContentPage>
+    

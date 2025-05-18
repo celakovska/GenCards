@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudyApp.View.ExamPage"
+             Title="{Binding CurrentPackName}">
+
+    <ScrollView>
+    <VerticalStackLayout Spacing="10" Margin="30,20,30,0">
+
+        <!-- Questions and answers from the flashcards -->
+        <HorizontalStackLayout Spacing="5" Margin="20,0,20,0">
+            <Label Text="{Binding ProgressLabel}" VerticalOptions="Center" />
+            <Label Text="{Binding Progress}" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <Frame Padding="10,5,10,5">
+            <VerticalStackLayout>
+                <Label Text="{Binding Question}" 
+               VerticalOptions="Center"
+               LineBreakMode="WordWrap"
+               MaxLines="5" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <Image Source="{Binding Img1Name}" Aspect="AspectFit">
+            <Image.Triggers>
+                <!-- If the image is vertical, set a max height -->
+                <DataTrigger TargetType="Image" Binding="{Binding IsImg1Vertical}" Value="True">
+                    <Setter Property="HeightRequest" Value="250"/>
+                    <!-- Set max height for vertical images -->
+                </DataTrigger>
+
+                <!-- If the image is horizontal, allow natural size (no height constraint) -->
+                <DataTrigger TargetType="Image" Binding="{Binding IsImg1Vertical}" Value="False">
+                    <Setter Property="HeightRequest" Value="-1"/>
+                    <!-- Removes height constraint -->
+                </DataTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <Frame Padding="10,5,10,5">
+            <Editor Text="{Binding UserInput}" VerticalOptions="Center"
+                       AutoSize="TextChanges"/>
+        </Frame>
+
+        <Label Text="{Binding Answer}"
+                   LineBreakMode="WordWrap"
+                   VerticalOptions="Start" />
+
+        <Image Source="{Binding Img2Name}" Aspect="AspectFit">
+            <Image.Triggers>
+                <!-- If the image is vertical, set a max height -->
+                <DataTrigger TargetType="Image" Binding="{Binding IsImg2Vertical}" Value="True">
+                    <Setter Property="HeightRequest" Value="250"/>
+                    <!-- Set max height for vertical images -->
+                </DataTrigger>
+
+                <!-- If the image is horizontal, allow natural size (no height constraint) -->
+                <DataTrigger TargetType="Image" Binding="{Binding IsImg2Vertical}" Value="False">
+                    <Setter Property="HeightRequest" Value="-1"/>
+                    <!-- Removes height constraint -->
+                </DataTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <Grid RowDefinitions="*"
+              ColumnDefinitions="*, *"
+              Padding="10"
+              RowSpacing="10"
+              ColumnSpacing="10">
+
+            <!-- Buttons to navigate between the flashcards -->
+            <Button Text="{Binding TitleNext}"
+                    Command="{Binding NextCommand}"
+                    Grid.Row="0" Grid.Column="1"
+                    BackgroundColor="#91c9aa"/>
+
+            <Button Text="EXIT"
+                    Command="{Binding GoBackCommand}"
+                    Grid.Row="0" Grid.Column="0"
+                    BackgroundColor="#91c9aa"/>
+        </Grid>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

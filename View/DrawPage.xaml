@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="StudyApp.View.DrawPage"
+             Title="Underline text to translate">
+
+    <Grid>
+        <!-- Base image -->
+        <Image x:Name="BaseImage"
+               Source="{Binding PicturePath}"
+               Aspect="AspectFit"
+               SizeChanged="OnImageSizeChanged" />
+
+        <!-- Drawing layer -->
+        <views:DrawingView
+            Lines="{Binding MyLines}"
+            LineColor="Red"
+            IsMultiLineModeEnabled="true"
+            ShouldClearOnFinish="false"
+            BackgroundColor="Transparent"
+            WidthRequest="{Binding ImageCanvasWidth}"
+            HeightRequest="{Binding ImageCanvasHeight}"/>
+
+        <!-- Buttons layout -->
+        <HorizontalStackLayout VerticalOptions="End" HorizontalOptions="Center" Spacing="10">
+            <Button Text="Back" Command="{Binding GoBackCommand}" />
+            <Button Text="Delete Lines" Command="{Binding DeleteLinesCommand}" />
+            <Button Text="Create Flashcard" Command="{Binding SaveDrawingCommand}" />
+        </HorizontalStackLayout>
+
+
+        <Grid x:Name="LoadingOverlay"
+              BackgroundColor="#80000000"
+              IsVisible="{Binding IsLoadingVisible}"
+              ZIndex="999">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="True"/>
+                <Label Text="Translating..." FontAttributes="Bold" Margin="0,10,0,0"/>
+            </StackLayout>
+        </Grid>
+    </Grid>
+
+</ContentPage>

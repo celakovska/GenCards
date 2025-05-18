@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudyApp.View.AddCardPage"
+             Title="{Binding Title}">
+
+    <Grid>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Margin="20,20,20,0">
+
+            <!-- Fill in flashcard -->
+            <Frame Padding="10,10,10,10">
+                <Grid RowDefinitions="Auto, Auto">
+                    <Label Text="{Binding Text1}" VerticalOptions="Center" Grid.Row="0"/>
+                    <!-- Editor that resizes dynamically based on text input -->
+                    <Editor Text="{Binding Entry1}" VerticalOptions="Center" Grid.Row="1" AutoSize="TextChanges"/>
+                </Grid>
+            </Frame>
+
+            <Grid RowDefinitions="Auto, *" ColumnDefinitions="*, auto"
+                  Padding="10" ColumnSpacing="10">
+
+                <Image Source="{Binding EntryImg1Name}" IsVisible="{Binding IsButtonVisible}"
+                       HeightRequest="100" Aspect="AspectFit"
+                       Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"/>
+
+                <Button Text="{Binding AddImg1Text}"
+                        Command="{Binding AddImg1Command}" IsVisible="{Binding IsButtonVisible}"
+                        FontSize="25" BackgroundColor="Transparent"
+                        Grid.Column="1"  Grid.Row="0"/>
+            </Grid>
+
+            <!-- AI buttons -->
+            <Button Text="Generate answer" Command="{Binding GenerateCommand}" IsVisible="{Binding IsButtonVisible}" BackgroundColor="#91c9aa"/>
+            <Button Text="{Binding TranslateTitle}" Command="{Binding TranslateCommand}" IsVisible="{Binding IsButtonVisible}" BackgroundColor="#91c9aa"/>
+
+            <Frame Padding="10,10,10,10" Margin="0,0,0,20">
+                <Grid RowDefinitions="Auto, Auto">
+                    <Label Text="{Binding Text2}" VerticalOptions="Center" Grid.Row="0"/>
+                    <!-- Editor that resizes dynamically based on text input -->
+                    <Editor Text="{Binding Entry2}" VerticalOptions="Center" Grid.Row="1" AutoSize="TextChanges"/>
+                </Grid>
+            </Frame>
+
+            <Grid RowDefinitions="Auto, *" ColumnDefinitions="*, auto"
+                  Padding="10" ColumnSpacing="10">
+
+                <Image Source="{Binding EntryImg2Name}" IsVisible="{Binding IsButtonVisible}"
+                       HeightRequest="100" Aspect="AspectFit"
+                       Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"/>
+
+                <Button Text="{Binding AddImg2Text}"
+                        Command="{Binding AddImg2Command}" IsVisible="{Binding IsButtonVisible}" 
+                        FontSize="25" BackgroundColor="Transparent"
+                        Grid.Column="1" Grid.Row="0"/>
+
+                <Button Text="🌐"
+                        Command="{Binding SetLanguageCommand}" IsVisible="{Binding LanguageVisible}" 
+                        FontSize="25" BackgroundColor="Transparent"
+                        Grid.Column="1" Grid.Row="0"/>
+            </Grid>
+
+            <!-- Buttons to save and exit -->
+            <Button Text="{Binding SaveTitle}" Command="{Binding SaveCommand}" BackgroundColor="#91c9aa"/>
+            <Button Text="BACK" Command="{Binding GoBackCommand}" BackgroundColor="#91c9aa"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+        <!-- Loading overlay (initially hidden) -->
+        <Grid x:Name="LoadingOverlay"
+              BackgroundColor="#80000000"
+              IsVisible="{Binding IsLoadingVisible}"
+              ZIndex="999">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="True"/>
+                <Label Text="{Binding LoadingTitle}" FontAttributes="Bold" Margin="0,10,0,0"/>
+            </StackLayout>
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

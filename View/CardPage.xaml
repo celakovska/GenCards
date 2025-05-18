@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudyApp.View.CardPage"
+             Title="{Binding CurrentPack.Name}"
+             xmlns:conv="clr-namespace:StudyApp.Data"
+             xmlns:local ="clr-namespace:StudyApp.ViewModel"
+             x:DataType="local:CardViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:NullToBooleanConverter x:Key="NullToBoolean"/>
+            <conv:NullToColumnConverter x:Key="NullToColumn"/>
+            <conv:NullToGridLengthConverter x:Key="NullToGridLength"/>
+            <conv:NullToMarginConverter x:Key="NullToMargin"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid RowDefinitions="Auto, *, Auto">
+        <!-- Fixed content at the top -->
+        <Grid Padding="20,5,5,10" ColumnSpacing="10" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="{Binding Label}" FontSize="18"/>
+
+            <!-- Button to edit card pack -->
+            <Button Text="✏️"
+                    Command="{Binding EditCommand}"
+                    FontSize="20"
+                    BackgroundColor="Transparent"
+                    Grid.Column="1" VerticalOptions="Center"
+                    CornerRadius="100"
+                    Margin="5,0,0,0"/>
+        </Grid>
+
+        <!-- Scrollable content -->
+        <ScrollView Grid.Row="1">
+            <Grid Padding="20,10,20,10">
+
+                <CollectionView x:DataType="{x:Null}"
+                                ItemsSource="{Binding ListCards}"
+                                Grid.Row="0"
+                                SelectionMode="None">
+
+                <!-- Add spacing between items -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="20">
+                            <Grid Padding="0,10,10,10">
+                                <!-- Navigate to the selected flashcard with tap command -->
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:CardViewModel}}, Path=TapCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+
+                                <VerticalStackLayout Spacing="10">
+                                    <!-- First Row (Question) -->
+                                    <Grid VerticalOptions="Fill" ColumnSpacing="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="{Binding Img1Name, Converter={StaticResource NullToGridLength}}"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Image with corner radius -->
+                                            <Frame Padding="0" CornerRadius="10" Margin="10,0,0,0"
+                                               Grid.Column="0"
+                                                HasShadow="False" IsClippedToBounds="True"
+                                                IsVisible="{Binding Img1Name, Converter={StaticResource NullToBoolean}}"
+                                                WidthRequest="70" HeightRequest="70">
+
+                                            <Image Source="{Binding Img1Name}" 
+                                                   WidthRequest="70" HeightRequest="70"/>
+                                        </Frame>
+
+                                            <!-- Wrapped Label -->
+                                        <Label Text="{Binding Question}" FontSize="18"
+                                               Grid.Column="1" VerticalOptions="Center"
+                                               LineBreakMode="WordWrap" MaxLines="3"
+                                               Margin="{Binding Img1Name, Converter={StaticResource NullToMargin}}"/>
+                                    </Grid>
+
+                                    <!-- Second Row (Answer) -->
+                                    <Grid VerticalOptions="Fill" ColumnSpacing="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="{Binding Img2Name, Converter={StaticResource NullToGridLength}}"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Image with corner radius -->
+                                            <Frame Padding="0" CornerRadius="10" Margin="10,0,0,0"
+                                               Grid.Column="0"
+                                                HasShadow="False" IsClippedToBounds="True"
+                                                IsVisible="{Binding Img2Name, Converter={StaticResource NullToBoolean}}"
+                                                WidthRequest="70" HeightRequest="70">
+
+                                            <Image Source="{Binding Img2Name}" 
+                                                   WidthRequest="70" HeightRequest="70"/>
+                                        </Frame>
+
+                                            <!-- Wrapped Label -->
+                                        <Label Text="{Binding Answer}" FontSize="18" TextColor="Gray"
+                                               Grid.Column="1" VerticalOptions="Center"
+                                               LineBreakMode="WordWrap" MaxLines="3"
+                                               Margin="{Binding Img2Name, Converter={StaticResource NullToMargin}}"/>
+                                    </Grid>
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </Grid>
+        </ScrollView>
+
+        <!-- Fixed buttons at the bottom of the screen -->
+        <Grid Grid.Row="2" Padding="10" ColumnDefinitions="54,*, auto" ColumnSpacing="10">
+            
+            <!-- Button to add new card pack -->
+            <Button Text="+" FontSize="25"
+                    BackgroundColor="#91c9aa"
+                    Command="{Binding AddCommand}"
+                    Grid.Column="0"
+                    CornerRadius="100"/>
+
+            <!-- Button to navigate to the ExamPage -->
+            <Button Text="Practise flashcards"
+                    Command="{Binding ExamCommand}"
+                    IsVisible="{Binding HasFlashcards}"
+                    BackgroundColor="#556F7A"
+                    CornerRadius="10"
+                    Grid.Column="1"/>
+
+            <!-- Button to navigate home -->
+            <Button Text="🏠"
+                    Command="{Binding HomeCommand}"
+                    BackgroundColor="#D4AFCD"
+                    FontSize="18"
+                    CornerRadius="10"
+                    Grid.Column="2"/>
+        </Grid>
+    </Grid>
+
+</ContentPage>
