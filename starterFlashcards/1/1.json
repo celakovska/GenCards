@@ -1,0 +1,107 @@
+[
+    {
+        "Id": "e6aab001-6cb3-4c2e-8993-1e16d7fdd701",
+        "Question": "Hello",
+        "Answer": "Hola",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "7fc1a1fa-1b7d-4cc3-8a50-4b8b4d96a0cf",
+        "Question": "Good morning",
+        "Answer": "Buenos días",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "26dc7d44-0116-4708-bf96-3e4232a983e6",
+        "Question": "Good night",
+        "Answer": "Buenas noches",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "b5c407b7-203b-45a6-90d3-c019f9d2f72e",
+        "Question": "Please",
+        "Answer": "Por favor",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "cfe8d880-5cde-4fe2-81ad-5a4b3d0e169e",
+        "Question": "Thank you",
+        "Answer": "Gracias",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "57440f47-78fc-4010-b62c-844ea4fd2e4a",
+        "Question": "You're welcome",
+        "Answer": "De nada",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "ee2094c4-6242-43c8-910d-5a7403792433",
+        "Question": "Yes",
+        "Answer": "Sí",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "b4dbf878-d5a1-4f89-80dc-6fd0d8fef063",
+        "Question": "No",
+        "Answer": "No",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "3c7abcc9-02cf-4608-bb69-d348fefb62ef",
+        "Question": "Excuse me / Sorry",
+        "Answer": "Perdón / Lo siento",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "fbd5201d-fec1-4c7a-95db-d47466142f1b",
+        "Question": "How are you?",
+        "Answer": "¿Cómo estás?",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "3617ff99-6846-45ff-88f7-61bc21c7ac61",
+        "Question": "I'm fine, thanks",
+        "Answer": "Estoy bien, gracias",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "e2d0867d-b048-4447-b143-279062c7408f",
+        "Question": "What's your name?",
+        "Answer": "¿Cómo te llamas?",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "a4724fc7-e35d-4962-bd91-bd798dc27647",
+        "Question": "My name is Pedro",
+        "Answer": "Me llamo Pedro",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "e06fce3b-8718-437f-8146-4562b3f62759",
+        "Question": "I don't understand",
+        "Answer": "No entiendo",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "9267c46f-b12f-4b99-90a4-c22fe74c2688",
+        "Question": "Where is the bathroom?",
+        "Answer": "¿Dónde está el baño?",
+        "Img1Name": null,
+        "Img2Name": null
+    }
+]

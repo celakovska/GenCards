@@ -1,0 +1,30 @@
+[
+    {
+        "Id": "260c6e69-a095-4021-a480-c2cd66b5d34a",
+        "Question": "Name all nuclei in the plant cell.",
+        "Answer": "",
+        "Img1Name": null,
+        "Img2Name": "2\\Plant_cell_structure.png"
+    },
+    {
+        "Id": "10237d8c-cc5d-4df0-b0ec-13eb8b74b0e3",
+        "Question": "What is the function of the mitochondria?",
+        "Answer": "The mitochondria is the powerhouse of the cell. It produces energy (ATP) through cellular respiration.",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "4b5cf2f2-9e7e-4e6a-b0f5-9148d36f0f3f",
+        "Question": "How can you tell the difference between plant and animal cells?",
+        "Answer": "Plant cells have a cell wall, chloroplasts, and a large central vacuole. Animal cells do not.",
+        "Img1Name": null,
+        "Img2Name": null
+    },
+    {
+        "Id": "24e8728a-2852-4f5f-bff1-bb2d94b2a51e",
+        "Question": "What does the nucleus do?",
+        "Answer": "The nucleus stores DNA and controls the cell’s activities.",
+        "Img1Name": null,
+        "Img2Name": null
+    }
+]

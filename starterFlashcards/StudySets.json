@@ -1,0 +1,16 @@
+[
+    {
+        "Id": 1,
+        "Name": "Spanish",
+        "Storage": "1",
+        "Description": "¡Hola! Dive into Spanish with this quick-start pack full of useful words and simple phrases.",
+        "Language": "Spanish"
+    },
+    {
+        "Id": 2,
+        "Name": "Biology",
+        "Storage": "2",
+        "Description": "Turn your biology notes into flashcards to practice it effectively.",
+        "Language": ""
+    }
+]
