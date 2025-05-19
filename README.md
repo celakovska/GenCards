@@ -9,7 +9,7 @@ It helps users memorize effectively using a custom spaced repetition algorithm, 
 - ✍️ Create flashcards with text, images, or a combination of both  
 - 🤖 AI-assisted flashcard generation using the ChatGPT API  
 - 🗂 Organize flashcards into themed study sets and packs  
-- 📶 Works fully offline, all data stored locally in JSON  
+- 📶 Works offline, all data stored locally in JSON  
 - 🔄 Shareable flashcard packs (export/import as ZIP)  
 - ⚙️ Customizable language and API configuration for automatic flashcard generation
 
